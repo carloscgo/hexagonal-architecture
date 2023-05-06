@@ -42,11 +42,8 @@ services:
       dockerfile: ./cicd/nginx/Dockerfile
     image: nginx-hub
     restart: unless-stopped
-    env_file:
-      - ../.env
     ports:
-      - '${NGINX_APP_PORT:-5680}:80'
-      - '${NGINX_API_PORT:-5681}:8080'
+      - '${NGINX_PORT:-80}:80'
     volumes:
       - ./nginx/config/:/etc/nginx/conf.d/:rw
     networks:

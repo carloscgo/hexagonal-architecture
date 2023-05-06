@@ -2,8 +2,7 @@
 FROM nginx:alpine
 
 # Expose the listening port
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 80
 
 # Launch NGINX
 CMD [ "nginx", "-g", "daemon off;" ]
