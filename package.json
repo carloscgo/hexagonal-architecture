@@ -1,0 +1,24 @@
+{
+  "name": "hexagonal-architecture",
+  "version": "1.0.0",
+  "description": "Hexagonal Architecture",
+  "scripts": {
+    "start:react": "npm run dev --prefix ./src/react-app",
+    "start:api": "npm run start --prefix ./src/server-api",
+    "docker:run": "docker-compose -f ./cicd/docker-compose.yml",
+    "docker:up": "npm run docker:run -- up -d",
+    "docker:build": "npm run docker:run build",
+    "docker:command": "npm run docker:run exec -ti --"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carloscgo/hexagonal-architecture.git"
+  },
+  "author": "Carlos Camacho <carloscgo123@gmail.com>",
+  "license": "ISC",
+  "homepage": "https://github.com/carloscgo/hexagonal-architecture#readme",
+  "bugs": {
+    "url": "https://github.com/carloscgo/hexagonal-architecture/issues"
+  },
+  "main": "index.js"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "server-api",
+  "version": "1.0.0",
+  "description": "Server Json",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server -p 3001 -w data.json"
+  },
+  "author": {
+    "name": "Carlos Camacho",
+    "email": "carloscgo123@gmail.com"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.17.3"
+  }
+}

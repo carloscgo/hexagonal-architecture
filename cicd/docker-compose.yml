@@ -1,0 +1,70 @@
+version: '3.7'
+name: 'product-hub'
+services:
+  app:
+    build:
+      context: ../src/react-app
+      dockerfile: ../../cicd/app/Dockerfile
+      target: runner  
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    image: react-hub
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ../src/react-app/:/app/:rw
+    networks:
+      app-network:
+        ipv4_address: 172.40.0.2
+        aliases:
+          - app.local
+
+  api:
+    build:
+      context: ../src/server-api
+      dockerfile: ../../cicd/api/Dockerfile
+      target: runner  
+    image: api-hub
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ../src/server-api/:/app/:rw
+    networks:
+      app-network:
+        ipv4_address: 172.40.0.3
+        aliases:
+          - api.local
+
+  nginx:
+    build:
+      context: ../
+      dockerfile: ./cicd/nginx/Dockerfile
+    image: nginx-hub
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    ports:
+      - '${NGINX_APP_PORT:-5680}:80'
+      - '${NGINX_API_PORT:-5681}:8080'
+    volumes:
+      - ./nginx/config/:/etc/nginx/conf.d/:rw
+    networks:
+      app-network:
+        ipv4_address: 172.40.0.4
+        aliases:
+          - nginx.local
+    depends_on:
+      - app
+      - api
+    links:
+      - app
+      - api
+
+networks:
+  app-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.40.0.0/16
+          gateway: 172.40.0.1
