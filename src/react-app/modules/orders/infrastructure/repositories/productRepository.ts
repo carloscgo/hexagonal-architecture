@@ -1,13 +1,13 @@
-// src/infrastructure/repositories/productRepository.ts
+// src/infrastructure/repositories/orderRepository.ts
 
 import { IdOrder, Order } from '../../domain/models/Order';
 import { OrderRepository } from '../../domain/repositories/OrderRepository';
 import { Http } from '../../domain/repositories/Http';
 import { LIMIT } from '../../../../app/components/Pagination';
 
-const PATH = '/products'
+const PATH = '/orders'
 
-export const productRepository = (client: Http): OrderRepository => ({
+export const orderRepository = (client: Http): OrderRepository => ({
     getOrders: async (page: number) => client.get<Order[]>(PATH, {
         _limit: LIMIT,
         _page: page
@@ -15,9 +15,9 @@ export const productRepository = (client: Http): OrderRepository => ({
 
     getOrderById: async (id: IdOrder) => client.get<Order>(`${PATH}/${id}`),
 
-    addOrder: async (product: Omit<Order, 'id'>) => client.post<Order>(PATH, product),
+    addOrder: async (order: Omit<Order, 'id'>) => client.post<Order>(PATH, order),
 
-    editOrder: async (id: IdOrder, product: Omit<Order, 'id'>) => client.put<Order>(`${PATH}/${id}`, product),
+    editOrder: async (id: IdOrder, order: Omit<Order, 'id'>) => client.put<Order>(`${PATH}/${id}`, order),
 
     deleteOrder: async (id: IdOrder, refetch: () => void) => {
         client.delete<any>(`${PATH}/${id}`).then(() => {

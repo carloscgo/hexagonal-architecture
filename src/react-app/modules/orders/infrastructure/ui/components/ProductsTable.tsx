@@ -11,7 +11,7 @@ import { formatAmount, useTranslation } from "../../../../../app/utils/i18n";
 import { useDeleteOrder, useGetOrders } from "../../../application";
 import { IdOrder } from "../../../domain/models/Order";
 import { httpAxios } from "../../instances/httpAxios";
-import { productRepository } from "../../repositories/productRepository";
+import { orderRepository } from "../../repositories/orderRepository";
 import routes from "../utils/routes";
 
 const OrdersTable = () => {
@@ -19,8 +19,8 @@ const OrdersTable = () => {
 
     const { t } = useTranslation();
 
-    const getOrders = productRepository(httpAxios).getOrders;
-    const deleteOrder = productRepository(httpAxios).deleteOrder;
+    const getOrders = orderRepository(httpAxios).getOrders;
+    const deleteOrder = orderRepository(httpAxios).deleteOrder;
 
     const getOrdersAction = useGetOrders(getOrders, page);
     const deleteOrderAction = useDeleteOrder(deleteOrder);

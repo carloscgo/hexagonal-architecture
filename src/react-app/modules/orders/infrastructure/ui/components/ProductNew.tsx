@@ -1,7 +1,7 @@
 // modules/orders/infrastructure/ui/components/OrdersNew.tsx
 
 import { useAddOrder } from '../../../application';
-import { productRepository } from '../../repositories/productRepository';
+import { orderRepository } from '../../repositories/orderRepository';
 import { httpAxios } from '../../instances/httpAxios';
 import OrdersForm, { FormValues } from './OrderForm';
 import useToast from '../../../../../app/hooks/useToast';
@@ -10,7 +10,7 @@ import { useTranslation } from '../../../../../app/utils/i18n';
 const OrdersNew = () => {
     const { t } = useTranslation();
 
-    const addOrder = productRepository(httpAxios).addOrder;
+    const addOrder = orderRepository(httpAxios).addOrder;
 
     const addOrderAction = useAddOrder(addOrder);
 

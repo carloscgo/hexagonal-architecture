@@ -2,7 +2,7 @@
 
 import { useParams } from 'react-router-dom';
 import { useEditOrder, useGetOrderById } from '../../../application';
-import { productRepository } from '../../repositories/productRepository';
+import { orderRepository } from '../../repositories/orderRepository';
 import { httpAxios } from '../../instances/httpAxios';
 import OrdersForm, { FormValues } from './OrderForm';
 import useToast from '../../../../../app/hooks/useToast';
@@ -14,8 +14,8 @@ const OrderEdit = () => {
 
     const { t } = useTranslation();
 
-    const getOrderById = productRepository(httpAxios).getOrderById;
-    const editOrder = productRepository(httpAxios).editOrder;
+    const getOrderById = orderRepository(httpAxios).getOrderById;
+    const editOrder = orderRepository(httpAxios).editOrder;
 
     const editOrderAction = useEditOrder(editOrder);
     const getOrderByIcAction = useGetOrderById(getOrderById, idOrder as IdOrder);

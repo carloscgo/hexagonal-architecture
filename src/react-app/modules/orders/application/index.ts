@@ -5,7 +5,6 @@ export {
     useQuery,
     useQueryClient,
     QueryClient,
-    QueryClientProvider
 } from "@tanstack/react-query";
 export { useGetOrders } from './useGetOrders'
 export { useGetOrderById } from './useGetOrderById'

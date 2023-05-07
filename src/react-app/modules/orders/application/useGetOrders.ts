@@ -4,7 +4,7 @@ import { useQuery } from ".";
 import { OrderRepository } from "../domain/repositories/OrderRepository";
 
 export const useGetOrders = (getOrders: OrderRepository['getOrders'], page: number) => <any>useQuery({
-    queryKey: ['products', page],
+    queryKey: ['orders', page],
     queryFn: () => getOrders(page),
     keepPreviousData: true,
 });
