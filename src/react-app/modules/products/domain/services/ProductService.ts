@@ -7,7 +7,7 @@ export const productService = (repository: ProductRepository): ProductRepository
     getProducts: (page: number) => {
         return repository.getProducts(page);
     },
-    getProductById: (id: number) => {
+    getProductById: (id: IdProduct) => {
         return repository.getProductById(id);
     },
     addProduct: (product: Omit<Product, 'id'>) => {
@@ -16,7 +16,7 @@ export const productService = (repository: ProductRepository): ProductRepository
     editProduct: (id: IdProduct, product: Omit<Product, 'id'>) => {
         return repository.editProduct(id, product);
     },
-    deleteProduct: (id: IdProduct) => {
-        return repository.deleteProduct(id);
+    deleteProduct: (id: IdProduct, refetch: () => void) => {
+        return repository.deleteProduct(id, refetch);
     },
 });
