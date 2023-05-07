@@ -5,7 +5,7 @@
   "scripts": {
     "start:react": "npm run dev --prefix ./src/react-app",
     "start:api": "npm run start --prefix ./src/server-api",
-    "docker:run": "docker-compose -f ./cicd/docker-compose.yml --env-file ./.env",
+    "docker:run": "docker-compose -f ./cicd/docker-compose.yml --env-file ./.env.production",
     "docker:up": "npm run docker:run -- up -d",
     "docker:build": "npm run docker:run build",
     "docker:command": "npm run docker:run exec -ti --"
