@@ -7,7 +7,7 @@ import Loading from "../../../../../app/components/Loading";
 import useToast from "../../../../../app/hooks/useToast";
 import Pagination, { LIMIT, TYPES } from "../../../../../app/components/Pagination";
 import HeaderList from "../../../../../app/components/HeaderList";
-import { useTranslation } from "../../../../../app/utils/i18n";
+import { formatAmount, useTranslation } from "../../../../../app/utils/i18n";
 import { useDeleteProduct, useGetProducts } from "../../../application";
 import { IdProduct } from "../../../domain/models/Product";
 import { httpAxios } from "../../instances/httpAxios";
@@ -72,9 +72,15 @@ const ProductsTable = () => {
                                     label: t('tax')
                                 },
                             ]}
-                            values={getProductsAction.data}
+                            values={getProductsAction.data.map((item: any) => ({
+                                ...item,
+                                price: formatAmount(item.price),
+                                tax: formatAmount(item.tax),
+                            }))}
                             routesEdit={routes.edit}
                             keyId=":idProduct"
+                            titleDelete={t('deleteProduct')}
+                            messageDelete={t('messageDeleteProduct')}
                             actionDelete={actionDelete}
                         />
 

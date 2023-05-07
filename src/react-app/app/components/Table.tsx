@@ -5,7 +5,6 @@ import { RiDeleteBin2Fill, RiEdit2Fill } from "react-icons/ri";
 import { useTranslation } from "../utils/i18n";
 import Modal from "./Modal";
 import { useState } from "react";
-import { IdProduct } from "../../modules/products/domain/models/Product";
 
 interface Values {
     [key: string]: any;
@@ -16,21 +15,25 @@ interface Column {
     label: string,
 }
 
+type Id = number | string;
+
 type PropsTable = {
     columns: Column[];
     values: Values[];
     routesEdit: string;
     keyId: string;
-    actionDelete: (idProduct: IdProduct) => void;
+    titleDelete: string;
+    messageDelete: string;
+    actionDelete: (id: Id) => void;
 }
 
-export default function Table({ columns, values, routesEdit, keyId, actionDelete }: PropsTable) {
+export default function Table({ columns, values, routesEdit, keyId, titleDelete, messageDelete, actionDelete }: PropsTable) {
     const { t } = useTranslation();
-    const [idProduct, setIdProduct] = useState<IdProduct>();
+    const [id, setId] = useState<number | string>();
     const [showModal, setShowModal] = useState(false);
 
-    const onDelete = (id: IdProduct) => {
-        setIdProduct(id);
+    const onDelete = (id: number | string) => {
+        setId(id);
         setShowModal(true);
     }
 
@@ -38,12 +41,12 @@ export default function Table({ columns, values, routesEdit, keyId, actionDelete
         <>
             <Modal
                 color="red"
-                title={t('deleteProduct')}
-                message={`${t('messageDeleteProduct')} ${t('messageWarningDelete')}`}
+                title={titleDelete}
+                message={`${messageDelete} ${t('messageWarningDelete')}`}
                 labelButton={t('confirm')}
                 show={showModal}
                 onClose={() => setShowModal(false)}
-                onConfirm={() => actionDelete(idProduct as IdProduct)}
+                onConfirm={() => actionDelete(id as Id)}
             />
 
             <div className="flex flex-col mt-8">
