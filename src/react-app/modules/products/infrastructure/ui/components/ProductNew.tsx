@@ -14,7 +14,7 @@ const ProductsNew = () => {
 
     const addProductAction = useAddProduct(addProduct);
 
-    useToast(addProductAction.status, addProductAction.error);
+    useToast(addProductAction.status, t('creatingProduct'), t('successfullyCreated'), addProductAction.error);
 
     const onSubmit = (data: FormValues, reset: () => void) => {
         addProductAction.mutate(data);

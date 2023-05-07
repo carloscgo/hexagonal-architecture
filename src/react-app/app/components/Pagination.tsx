@@ -12,11 +12,17 @@ type PropsPagination = {
 // eslint-disable-next-line react-refresh/only-export-components
 export const LIMIT = 10;
 
+// eslint-disable-next-line react-refresh/only-export-components
+export const TYPES = {
+    previous: 'previous',
+    next: 'next'
+}
+
 export default function Pagination({ current, length, onPage }: PropsPagination) {
     const { t } = useTranslation();
 
-    const onPagePrevious = () => current > 1 && onPage(current - 1, 'previous');
-    const onPageNext = () => length === LIMIT && onPage(current + 1, 'next');
+    const onPagePrevious = () => current > 1 && onPage(current - 1, TYPES.previous);
+    const onPageNext = () => length === LIMIT && onPage(current + 1, TYPES.next);
 
     return (
         <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">

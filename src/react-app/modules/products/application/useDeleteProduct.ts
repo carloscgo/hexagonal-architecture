@@ -5,5 +5,5 @@ import { ProductRepository } from "../domain/repositories/ProductRepository";
 import { IdProduct } from "../domain/models/Product";
 
 export const useDeleteProduct = (deleteProduct: ProductRepository['deleteProduct']) => <any>useMutation({
-    mutationFn: (id: IdProduct) => deleteProduct(id),
+    mutationFn: ({ id, refetch }: { id: IdProduct, refetch: () => void }) => deleteProduct(id, refetch),
 })

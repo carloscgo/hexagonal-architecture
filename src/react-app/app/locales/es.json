@@ -4,19 +4,35 @@
     "creating": "Creando...",
     "actions": "Acciones",
     "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "messageWarningDelete": "Todos tus datos serán eliminados permanentemente de nuestros servidores. Esta acción no se puede revertir.",
+    "loading": "Cargando...",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "successfullyCreated": "¡Creado exitosamente!",
+    "successfullyUpdated": "¡Actualizado exitosamente!",
+    "successfullyDeleted": "¡Eliminado exitosamente!",
+    "somethingWentWrong": "Algo salió mal. Por favor, intente de nuevo",
 
     "createProduct": "Crear Producto",
-    "latestProducts": "Ultimos Products",
-    "listLatestProducts": "Este es el listado de los ultimos productos",
     "createAnewProduct": "Crear un nuevo Producto",
+    "creatingProduct": "Creando nuevo producto...",
+    "editProduct": "Editar Producto",
+    "editingProduct": "Editando producto...",
+    "deletingProduct": "Eliminando producto...",
+
+    "latestProducts": "Últimos Productos",
+    "listLatestProducts": "Esta es una lista de los últimos productos",
+    "deleteProduct": "Eliminar Producto",
+    "messageDeleteProduct": "¿Estás seguro que quieres eliminar este producto?",
     "name": "Nombre",
     "reference": "Referencia",
-    "description": "Descripcion",
+    "description": "Descripción",
     "price": "Precio",
     "tax": "Impuesto",
 
-    "latestOrders": "Ultimos Pedidos",
-    "listLatestOrders": "Este es el listado de los ultimos pedidos",
-    "createOrder": "Crear Pedido"
+    "createOrder": "Crear Orden",
+    "latestOrders": "Últimas Órdenes",
+    "listLatestOrders": "Esta es una lista de las últimas órdenes"
   }
 }

@@ -5,7 +5,7 @@ import { useState } from "react";
 import Table from "../../../../../app/components/Table";
 import Loading from "../../../../../app/components/Loading";
 import useToast from "../../../../../app/hooks/useToast";
-import Pagination, { LIMIT } from "../../../../../app/components/Pagination";
+import Pagination, { LIMIT, TYPES } from "../../../../../app/components/Pagination";
 import HeaderList from "../../../../../app/components/HeaderList";
 import { useTranslation } from "../../../../../app/utils/i18n";
 import { useDeleteProduct, useGetProducts } from "../../../application";
@@ -25,18 +25,16 @@ const ProductsTable = () => {
     const getProductsAction = useGetProducts(getProducts, page);
     const deleteProductAction = useDeleteProduct(deleteProduct);
 
-    useToast(deleteProductAction.status, deleteProductAction.error);
+    useToast(deleteProductAction.status, t('deletingProduct'), t('successfullyDeleted'), deleteProductAction.error);
 
-    const actionDelete = (id: IdProduct) => {
-        deleteProductAction.mutate(id);
-    }
+    const actionDelete = (id: IdProduct) => deleteProductAction.mutate({ id, refetch: getProductsAction.refetch });
 
     const onPage = (page: number, type: string) => {
-        if (type === 'next' && getProductsAction.data.length === LIMIT) {
+        if (type === TYPES.next && getProductsAction.data.length === LIMIT) {
             setPage(page);
         }
 
-        if (type === 'previous') {
+        if (type === TYPES.previous) {
             setPage(page);
         }
     }
@@ -76,6 +74,7 @@ const ProductsTable = () => {
                             ]}
                             values={getProductsAction.data}
                             routesEdit={routes.edit}
+                            keyId=":idProduct"
                             actionDelete={actionDelete}
                         />
 

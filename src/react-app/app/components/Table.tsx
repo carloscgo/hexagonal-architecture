@@ -20,10 +20,11 @@ type PropsTable = {
     columns: Column[];
     values: Values[];
     routesEdit: string;
+    keyId: string;
     actionDelete: (idProduct: IdProduct) => void;
 }
 
-export default function Table({ columns, values, routesEdit, actionDelete }: PropsTable) {
+export default function Table({ columns, values, routesEdit, keyId, actionDelete }: PropsTable) {
     const { t } = useTranslation();
     const [idProduct, setIdProduct] = useState<IdProduct>();
     const [showModal, setShowModal] = useState(false);
@@ -71,7 +72,7 @@ export default function Table({ columns, values, routesEdit, actionDelete }: Pro
                                                 </td>
                                             ))}
                                             <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 flex gap-3 items-center justify-center">
-                                                <Link to={routesEdit}>
+                                                <Link to={routesEdit.replace(keyId, value.id)}>
                                                     <RiEdit2Fill size="20px" className="text-indigo-500" />
                                                 </Link>
 

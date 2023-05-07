@@ -13,11 +13,15 @@ export const productRepository = (client: Http): ProductRepository => ({
         _page: page
     }),
 
-    getProductById: async (id: number) => client.get<Product>(`${PATH}/${id}`),
+    getProductById: async (id: IdProduct) => client.get<Product>(`${PATH}/${id}`),
 
     addProduct: async (product: Omit<Product, 'id'>) => client.post<Product>(PATH, product),
 
     editProduct: async (id: IdProduct, product: Omit<Product, 'id'>) => client.put<Product>(`${PATH}/${id}`, product),
 
-    deleteProduct: async (id: IdProduct) => client.delete<any>(`${PATH}/${id}`)
+    deleteProduct: async (id: IdProduct, refetch: () => void) => {
+        client.delete<any>(`${PATH}/${id}`).then(() => {
+            refetch();
+        })
+    }
 });

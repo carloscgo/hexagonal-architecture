@@ -1,4 +1,4 @@
-// modules/products/infrastructure/ui/components/ProductsForm.tsx
+// modules/products/infrastructure/ui/components/Productstsx
 
 import { type FieldValues, useForm } from 'react-hook-form';
 import * as Yup from "yup";
@@ -8,6 +8,8 @@ import Input from '../../../../../app/components/Input';
 import FootButtons from '../../../../../app/components/FootButtons';
 import { useTranslation } from '../../../../../app/utils/i18n';
 import routes from "../utils/routes";
+import { useEffect } from 'react';
+import { Product } from '../../../domain/models/Product';
 
 export interface FormValues extends FieldValues {
     title: string;
@@ -20,15 +22,16 @@ export interface FormValues extends FieldValues {
 type PropsProductsForm = {
     title: string;
     labelSubmit: string;
+    values?: Product;
     onSubmit: (
         data: FormValues,
         reset: () => void
     ) => void;
 };
 
-const ProductsForm = ({ title, labelSubmit, onSubmit }: PropsProductsForm) => {
+const ProductsForm = ({ title, labelSubmit, values, onSubmit }: PropsProductsForm) => {
     const { t } = useTranslation();
-
+    console.log({ values })
     const schema = Yup.object().shape({
         name: Yup.string().label(t('name')).trim().required().min(3).max(30),
         reference: Yup.string().label(t('reference')).trim().required().min(3).max(30),
@@ -41,17 +44,28 @@ const ProductsForm = ({ title, labelSubmit, onSubmit }: PropsProductsForm) => {
         register,
         handleSubmit,
         formState: { errors, isValid, isSubmitting },
+        setValue,
         reset,
     } = useForm<FormValues>({
         mode: "onChange",
         resolver: yupResolver(schema),
     });
 
+    useEffect(() => {
+        if (typeof values === 'object' && values) {
+            setValue("name", values.name)
+            setValue("reference", values.reference)
+            setValue("description", values.description)
+            setValue("price", values.price as number)
+            setValue("tax", values.tax as number)
+        }
+    }, [values]);
+
     const callOnSubmit = (data: FormValues) => onSubmit(data, reset);
 
     return (
         <div className="container mx-auto max-w-md py-12">
-            <h1 className="text-3xl font-medium my-5 dark:text-blue-300">{ title }</h1>
+            <h1 className="text-3xl font-medium my-5 dark:text-blue-300">{title}</h1>
 
             <form className="grid grid-cols-1 gap-y-6 shadow-lg p-8 rounded-lg" onSubmit={handleSubmit(callOnSubmit)}>
                 <Input name='name' title={t('name')} register={register} errors={errors} validations={{ required: true, maxLength: 30 }} />

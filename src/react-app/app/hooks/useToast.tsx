@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import StatusMutation from "../utils/statusUseQuery";
 import { Notyf } from "notyf";
+import StatusMutation from "../utils/statusUseQuery";
+import { useTranslation } from "../utils/i18n";
 
 const notyf = new Notyf({
     duration: 1000,
@@ -12,24 +13,26 @@ const notyf = new Notyf({
 
 });
 
-const useToast = (status: string, error?: string) => {
+const useToast = (status: string, message: string, success: string, error?: string) => {
+    const { t } = useTranslation();
+
     useEffect(() => {
         if (status !== StatusMutation.idle) {
             if (status === StatusMutation.loading) {
                 notyf.open({ 
+                    message,
                     type: 'custom', 
-                    message: 'Creating new product...',
                     background: '#fff',
                     className: 'text-black'
                 });
             }
 
             if (status === StatusMutation.success) {
-                notyf.success('Product successfully created!');
+                notyf.success(success);
             }
 
             if (status === StatusMutation.error) {
-                notyf.error(`Something went wrong. Please try again - ${error}`);
+                notyf.error(`${t('somethingWentWrong')} - ${error}`);
             }
         }
     }, [status])

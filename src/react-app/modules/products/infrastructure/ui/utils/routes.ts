@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 const routes: any = {
     list: '/',
     new: '/product/new',
-    edit: '/product/edit',
+    edit: '/product/edit/:idProduct',
     details: '/product/details',
 }
 
