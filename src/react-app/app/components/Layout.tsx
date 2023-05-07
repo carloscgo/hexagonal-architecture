@@ -1,9 +1,12 @@
+// app/components/Layout.tsx
+
 import { useCallback, useRef } from "react";
 import { HiOutlineSquares2X2 } from 'react-icons/hi2';
 
 import MetaTags from './MetaTags';
 import Menus from './Menu';
 import ButtonTheme from './ButtonTheme';
+import { LanguageSelector } from "./LanguageSelector";
 import { Route, Routes } from "../utils/routes";
 import { Container as Products } from "../../modules/products/infrastructure/ui/views";
 
@@ -65,7 +68,9 @@ export default function Layout() {
                         {appName}
                     </div>
                     <div className="grow h-full flex items-center justify-center"></div>
-                    <div className="flex-none h-full text-center flex items-center justify-center"></div>
+                    <div className="flex-none h-full text-center flex items-center justify-center">
+                        <LanguageSelector />
+                    </div>
                 </div>
 
                 <aside ref={sidebar} className="w-60 -translate-x-48 fixed transition transform ease-in-out duration-1000 z-50 flex h-screen bg-[#1E293B]">

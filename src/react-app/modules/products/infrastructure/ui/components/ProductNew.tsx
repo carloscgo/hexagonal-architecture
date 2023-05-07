@@ -3,36 +3,27 @@
 import { useAddProduct } from '../../../application';
 import { productRepository } from '../../repositories/productRepository';
 import { httpAxios } from '../../instances/httpAxios';
-import ProductsForm from './ProductForm';
+import ProductsForm, { FormValues } from './ProductForm';
 import useToast from '../../../../../app/hooks/useToast';
-
-type FormValues = {
-    title: string;
-    reference: string;
-    description: string;
-    price: number;
-    tax: number;
-}
+import { useTranslation } from '../../../../../app/utils/i18n';
 
 const ProductsNew = () => {
+    const { t } = useTranslation();
+
     const addProduct = productRepository(httpAxios).addProduct;
 
     const addProductAction = useAddProduct(addProduct);
 
     useToast(addProductAction.status, addProductAction.error);
 
-    const onSubmit = async (data: FormValues, reset: Function) => {
-        try {
-            addProductAction.mutate(data);
+    const onSubmit = (data: FormValues, reset: () => void) => {
+        addProductAction.mutate(data);
 
-            reset();
-        } catch (error) {
-            console.error(error);
-        }
+        reset();
     }
 
     return (
-        <ProductsForm onSubmit={onSubmit} />
+        <ProductsForm title={t('createAnewProduct')} labelSubmit={t('createProduct')} onSubmit={onSubmit} />
     )
 }
 

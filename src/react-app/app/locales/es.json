@@ -1,0 +1,22 @@
+{
+  "translation": {
+    "goBack": "Regresar",
+    "creating": "Creando...",
+    "actions": "Acciones",
+    "cancel": "Cancelar",
+
+    "createProduct": "Crear Producto",
+    "latestProducts": "Ultimos Products",
+    "listLatestProducts": "Este es el listado de los ultimos productos",
+    "createAnewProduct": "Crear un nuevo Producto",
+    "name": "Nombre",
+    "reference": "Referencia",
+    "description": "Descripcion",
+    "price": "Precio",
+    "tax": "Impuesto",
+
+    "latestOrders": "Ultimos Pedidos",
+    "listLatestOrders": "Este es el listado de los ultimos pedidos",
+    "createOrder": "Crear Pedido"
+  }
+}

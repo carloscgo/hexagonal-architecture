@@ -1,13 +1,15 @@
+// app/components/Alert.tsx
+
 import { useEffect, useState } from "react";
 import { MdClose } from 'react-icons/md'
 
-interface Props {
+interface PropsAlert {
     message: string;
     title?: string;
     type: 'danger' | 'warning' | 'info' | 'success';
 }
 
-export default function Alert({ message, type, title }: Props) {
+export default function Alert({ message, type, title }: PropsAlert) {
     const [show, setShow] = useState(true)
     const [color, setColor] = useState({ 
         text: '' ,

@@ -1,10 +1,13 @@
 // modules/products/domain/models/Product.ts
 
+export type IdProduct = string | number;
+
 export type Product = {
-    id: string | number;
+    id: IdProduct;
     name: string;
     reference: string;
     description: string;
-    price: number;
-    tax: number;
+    price: string | number;
+    tax: string | number;
+    [key: string]: any;
 };

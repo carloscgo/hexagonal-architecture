@@ -2,8 +2,8 @@
 
 import { useMutation } from ".";
 import { ProductRepository } from "../domain/repositories/ProductRepository";
-import { Product } from "../domain/models/Product";
+import { IdProduct } from "../domain/models/Product";
 
-export const useDeleteProduct = (deleteProduct: ProductRepository['deleteProduct']) => useMutation({
-    mutationFn: (id: Pick<Product, 'id'>) => deleteProduct(id),
+export const useDeleteProduct = (deleteProduct: ProductRepository['deleteProduct']) => <any>useMutation({
+    mutationFn: (id: IdProduct) => deleteProduct(id),
 })

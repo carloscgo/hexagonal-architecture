@@ -1,8 +1,10 @@
+// app/components/Menu.tsx
+
 import { Link } from "react-router-dom";
 import { BiHome, BiStore, BiSpreadsheet } from 'react-icons/bi';
 import routes from "../utils/routes";
 
-interface Props {
+type PropsMenu = {
     maxSidebar: React.MutableRefObject<HTMLDivElement | null>
     miniSidebar: React.MutableRefObject<HTMLDivElement | null>
 }
@@ -25,7 +27,7 @@ const ItemsMenu = [
     },
 ]
 
-export default function Menu({ maxSidebar, miniSidebar }: Props) {
+export default function Menu({ maxSidebar, miniSidebar }: PropsMenu) {
     return (
         <>
             <div ref={maxSidebar} className="max hidden text-white mt-20 flex-col space-y-2 w-full h-[calc(100vh)]">

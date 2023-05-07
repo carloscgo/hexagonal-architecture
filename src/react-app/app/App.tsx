@@ -5,9 +5,13 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Layout from "./components/Layout";
 import { BrowserRouter } from "./utils/routes";
+import i18n from "./utils/i18n";
 
-import './index.css'
+import "./index.css";
 import "notyf/notyf.min.css";
+import "flag-icons/css/flag-icons.min.css";
+
+i18n();
 
 const client = new QueryClient()
 

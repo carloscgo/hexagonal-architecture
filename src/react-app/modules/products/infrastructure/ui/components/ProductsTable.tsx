@@ -1,70 +1,87 @@
 
 // modules/products/infrastructure/ui/components/ProductsTable.tsx
 
-import routes, { Link } from "../utils/routes";
+import { useState } from "react";
+import Table from "../../../../../app/components/Table";
+import Loading from "../../../../../app/components/Loading";
+import useToast from "../../../../../app/hooks/useToast";
+import Pagination, { LIMIT } from "../../../../../app/components/Pagination";
+import HeaderList from "../../../../../app/components/HeaderList";
+import { useTranslation } from "../../../../../app/utils/i18n";
+import { useDeleteProduct, useGetProducts } from "../../../application";
+import { IdProduct } from "../../../domain/models/Product";
+import { httpAxios } from "../../instances/httpAxios";
+import { productRepository } from "../../repositories/productRepository";
+import routes from "../utils/routes";
 
 const ProductsTable = () => {
+    const [page, setPage] = useState(1);
+
+    const { t } = useTranslation();
+
+    const getProducts = productRepository(httpAxios).getProducts;
+    const deleteProduct = productRepository(httpAxios).deleteProduct;
+
+    const getProductsAction = useGetProducts(getProducts, page);
+    const deleteProductAction = useDeleteProduct(deleteProduct);
+
+    useToast(deleteProductAction.status, deleteProductAction.error);
+
+    const actionDelete = (id: IdProduct) => {
+        deleteProductAction.mutate(id);
+    }
+
+    const onPage = (page: number, type: string) => {
+        if (type === 'next' && getProductsAction.data.length === LIMIT) {
+            setPage(page);
+        }
+
+        if (type === 'previous') {
+            setPage(page);
+        }
+    }
+
+    if (getProductsAction.loading) return <Loading />
+
     return (
         <div className="w-full grid grid-cols-1 gap-4">
             <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                <div className="mb-4 flex items-center justify-between">
-                    <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">Latest Orders</h3>
-                        <span className="text-base font-normal text-gray-500">This is a list of latest orders</span>
-                    </div>
-                    <div className="flex-shrink-0">
-                        <Link to={routes.new} className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">
-                            Create Order
-                        </Link>
-                    </div>
-                </div>
-                <div className="flex flex-col mt-8">
-                    <div className="overflow-x-auto rounded-lg">
-                        <div className="align-middle inline-block min-w-full">
-                            <div className="shadow overflow-hidden sm:rounded-lg">
-                                <table className="min-w-full divide-y divide-gray-200">
-                                    <thead className="bg-gray-50">
-                                        <tr>
-                                            <th scope="col" className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Order
-                                            </th>
-                                            <th scope="col" className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Date & Time
-                                            </th>
-                                            <th scope="col" className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Amount
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="bg-white">
-                                        <tr>
-                                            <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                                Payment from <span className="font-semibold">Bonnie Green</span>
-                                            </td>
-                                            <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                                Apr 23 ,2021
-                                            </td>
-                                            <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                                $2300
-                                            </td>
-                                        </tr>
-                                        <tr className="bg-gray-50">
-                                            <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                                Payment refund to <span className="font-semibold">#00910</span>
-                                            </td>
-                                            <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                                Apr 23 ,2021
-                                            </td>
-                                            <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                                -$670
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <HeaderList
+                    title={t('latestProducts')}
+                    description={t('listLatestProducts')}
+                    labelCreate={t('createProduct')}
+                    routeNew={routes.new}
+                />
+
+                {getProductsAction.data && (
+                    <>
+                        <Table
+                            columns={[
+                                {
+                                    key: 'name',
+                                    label: t('name')
+                                },
+                                {
+                                    key: 'reference',
+                                    label: t('reference')
+                                },
+                                {
+                                    key: 'price',
+                                    label: t('price')
+                                },
+                                {
+                                    key: 'tax',
+                                    label: t('tax')
+                                },
+                            ]}
+                            values={getProductsAction.data}
+                            routesEdit={routes.edit}
+                            actionDelete={actionDelete}
+                        />
+
+                        <Pagination current={page} length={getProductsAction.data.length} onPage={onPage} />
+                    </>
+                )}
             </div>
         </div>
     )

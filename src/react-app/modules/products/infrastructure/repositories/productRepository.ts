@@ -1,14 +1,15 @@
 // src/infrastructure/repositories/productRepository.ts
 
-import { Product } from '../../domain/models/Product';
+import { IdProduct, Product } from '../../domain/models/Product';
 import { ProductRepository } from '../../domain/repositories/ProductRepository';
 import { Http } from '../../domain/repositories/Http';
+import { LIMIT } from '../../../../app/components/Pagination';
 
 const PATH = '/products'
 
 export const productRepository = (client: Http): ProductRepository => ({
     getProducts: async (page: number) => client.get<Product[]>(PATH, {
-        _limit: 10,
+        _limit: LIMIT,
         _page: page
     }),
 
@@ -16,7 +17,7 @@ export const productRepository = (client: Http): ProductRepository => ({
 
     addProduct: async (product: Omit<Product, 'id'>) => client.post<Product>(PATH, product),
 
-    editProduct: async (id: Pick<Product, 'id'>, product: Omit<Product, 'id'>) => client.put<Product>(`${PATH}/${id}`, product),
+    editProduct: async (id: IdProduct, product: Omit<Product, 'id'>) => client.put<Product>(`${PATH}/${id}`, product),
 
-    deleteProduct: async (id: Pick<Product, 'id'>) => client.delete<any>(`${PATH}/${id}`)
+    deleteProduct: async (id: IdProduct) => client.delete<any>(`${PATH}/${id}`)
 });

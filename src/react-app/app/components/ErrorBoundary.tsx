@@ -1,3 +1,5 @@
+// app/components/ErrorBoundary.tsx
+
 import React, { ReactNode } from "react";
 
 interface ComponentProps {

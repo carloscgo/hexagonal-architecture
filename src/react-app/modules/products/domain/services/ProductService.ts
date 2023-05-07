@@ -1,6 +1,6 @@
 // modules/products/domain/services/ProductService.ts
 
-import { Product } from '../models/Product';
+import { IdProduct, Product } from '../models/Product';
 import { ProductRepository } from '../repositories/ProductRepository';
 
 export const productService = (repository: ProductRepository): ProductRepository => ({
@@ -13,10 +13,10 @@ export const productService = (repository: ProductRepository): ProductRepository
     addProduct: (product: Omit<Product, 'id'>) => {
         return repository.addProduct(product);
     },
-    editProduct: (id: Pick<Product, 'id'>, product: Omit<Product, 'id'>) => {
+    editProduct: (id: IdProduct, product: Omit<Product, 'id'>) => {
         return repository.editProduct(id, product);
     },
-    deleteProduct: (id: Pick<Product, 'id'>) => {
+    deleteProduct: (id: IdProduct) => {
         return repository.deleteProduct(id);
     },
 });

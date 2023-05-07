@@ -1,3 +1,5 @@
+// app/components/MetaTags.tsx
+
 import { Helmet } from "react-helmet-async";
 
 const appName = import.meta.env.VITE_APP_TITLE;

@@ -1,3 +1,5 @@
+// app/components/Nav.tsx
+
 import { ReactNode, isValidElement } from "react";
 import { Link } from "react-router-dom";
 import { MdArrowForwardIos } from 'react-icons/md'
@@ -7,12 +9,12 @@ interface PreviousItem {
     icon: HTMLDivElement | ReactNode;
 }
 
-interface Props {
+type PropsNav = {
     current: string;
     previous: PreviousItem[];
 }
 
-export default function Nav({ current, previous }: Props) {
+export default function Nav({ current, previous }: PropsNav) {
     return (
         <nav className="flex px-5 py-3 text-gray-700 rounded-lg bg-gray-50 dark:bg-[#1E293B]" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-3">
