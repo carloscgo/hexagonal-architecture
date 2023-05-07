@@ -22,7 +22,7 @@ const OrderEdit = () => {
 
     useToast(editOrderAction.status, t('editingOrder'), t('successfullyUpdated'), editOrderAction.error);
 
-    const onSubmit = (data: FormValues) => editOrderAction.mutate({ id: idOrder, product: data });
+    const onSubmit = (data: FormValues) => editOrderAction.mutate({ id: idOrder, order: data });
 
     return (
         <OrdersForm title={t('editOrder')} labelSubmit={t('editOrder')} values={getOrderByIcAction.data} onSubmit={onSubmit} />

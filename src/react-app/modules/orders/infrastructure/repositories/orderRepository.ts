@@ -3,7 +3,7 @@
 import { IdOrder, Order } from '../../domain/models/Order';
 import { OrderRepository } from '../../domain/repositories/OrderRepository';
 import { Http } from '../../domain/repositories/Http';
-import { LIMIT } from '../../../../app/components/Pagination';
+import { LIMIT } from '../../../../app/utils/constants';
 
 const PATH = '/orders'
 

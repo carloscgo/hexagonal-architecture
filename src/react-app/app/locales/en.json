@@ -5,14 +5,24 @@
     "actions": "Actions",
     "cancel": "Cancel",
     "confirm": "Confirm",
-    "messageWarningDelete": "All of your data will be permanently removed from our servers forever. This action cannot be undone.",
     "loading": "Loading...",
     "previous": "Previous",
     "next": "Next",
+    
+    "messageWarningDelete": "All of your data will be permanently removed from our servers forever. This action cannot be undone.",
     "successfullyCreated": "Successfully created!",
     "successfullyUpdated": "Successfully updated!",
     "successfullyDeleted": "Successfully deleted!",
     "somethingWentWrong": "Something went wrong. Please try again",
+
+    "name": "Name",
+    "reference": "Reference",
+    "description": "Description",
+    "price": "Price",
+    "tax": "Tax",
+
+    "total": "Total",
+    "taxes": "Taxes",
 
     "createProduct": "Create Product",
     "createAnewProduct": "Create a new Product",
@@ -25,14 +35,17 @@
     "listLatestProducts": "This is a list of latest product",
     "deleteProduct": "Delete Product",
     "messageDeleteProduct": "Are you sure you want to delete this product?",
-    "name": "Name",
-    "reference": "Reference",
-    "description": "Description",
-    "price": "Price",
-    "tax": "Tax",
 
     "createOrder": "Create Order",
+    "createAnewOrder": "Create a new Order",
+    "creatingOrder": "Creating new order...",
+    "editOrder": "Edit Order",
+    "editingOrder": "Editing order...",
+    "deletingOrder": "Deleting order...",
+
     "latestOrders": "Latest Orders",
-    "listLatestOrders": "This is a list of latest orders"
+    "listLatestOrders": "This is a list of latest orders",
+    "deleteOrder": "Delete Order",
+    "messageDeleteOrder": "Are you sure you want to delete this order?"
   }
 }

@@ -10,7 +10,6 @@ const notyf = new Notyf({
         x: "right",
         y: "top",
     },
-
 });
 
 const useToast = (status: string, message: string, success: string, error?: string) => {

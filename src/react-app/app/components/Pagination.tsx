@@ -2,20 +2,12 @@
 
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { useTranslation } from "../utils/i18n";
+import { LIMIT, TYPES } from "../utils/constants";
 
 type PropsPagination = {
     current: number;
     length: number;
     onPage: (page: number, type: string) => void;
-}
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const LIMIT = 10;
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const TYPES = {
-    previous: 'previous',
-    next: 'next'
 }
 
 export default function Pagination({ current, length, onPage }: PropsPagination) {

@@ -1,4 +1,4 @@
-// modules/orders/infrastructure/ui/components/Orderstsx
+// modules/orders/infrastructure/ui/components/Orders.tsx
 
 import { type FieldValues, useForm } from 'react-hook-form';
 import * as Yup from "yup";
@@ -29,9 +29,9 @@ type PropsOrdersForm = {
     ) => void;
 };
 
-const OrdersForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) => {
+const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) => {
     const { t } = useTranslation();
-    console.log({ values })
+
     const schema = Yup.object().shape({
         name: Yup.string().label(t('name')).trim().required().min(3).max(30),
         reference: Yup.string().label(t('reference')).trim().required().min(3).max(30),
@@ -80,4 +80,4 @@ const OrdersForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =
     )
 }
 
-export default OrdersForm;
+export default OrderForm;

@@ -9,6 +9,7 @@ import ButtonTheme from './ButtonTheme';
 import { LanguageSelector } from "./LanguageSelector";
 import { Route, Routes } from "../utils/routes";
 import { Container as Products } from "../../modules/products/infrastructure/ui/views";
+import { Container as Orders } from "../../modules/orders/infrastructure/ui/views";
 
 import styles from "../styles/Layout.module.css";
 
@@ -94,10 +95,8 @@ export default function Layout() {
                 </aside>
 
                 <div ref={content} className="content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4">
-                    <Routes>
-                        <Route index path="/*" element={<Products />} />
-                        <Route path="/products/*" element={<Products />} />
-                    </Routes>
+                    <Products />
+                    <Orders />
                 </div>
             </div>
         </>

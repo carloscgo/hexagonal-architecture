@@ -1,4 +1,4 @@
-// modules/products/infrastructure/ui/components/Productstsx
+// modules/products/infrastructure/ui/components/Products.tsx
 
 import { type FieldValues, useForm } from 'react-hook-form';
 import * as Yup from "yup";
@@ -31,7 +31,7 @@ type PropsProductsForm = {
 
 const ProductsForm = ({ title, labelSubmit, values, onSubmit }: PropsProductsForm) => {
     const { t } = useTranslation();
-    console.log({ values })
+
     const schema = Yup.object().shape({
         name: Yup.string().label(t('name')).trim().required().min(3).max(30),
         reference: Yup.string().label(t('reference')).trim().required().min(3).max(30),

@@ -5,7 +5,7 @@ import { useState } from "react";
 import Table from "../../../../../app/components/Table";
 import Loading from "../../../../../app/components/Loading";
 import useToast from "../../../../../app/hooks/useToast";
-import Pagination, { LIMIT, TYPES } from "../../../../../app/components/Pagination";
+import Pagination from "../../../../../app/components/Pagination";
 import HeaderList from "../../../../../app/components/HeaderList";
 import { formatAmount, useTranslation } from "../../../../../app/utils/i18n";
 import { useDeleteOrder, useGetOrders } from "../../../application";
@@ -13,6 +13,7 @@ import { IdOrder } from "../../../domain/models/Order";
 import { httpAxios } from "../../instances/httpAxios";
 import { orderRepository } from "../../repositories/orderRepository";
 import routes from "../utils/routes";
+import { LIMIT, TYPES } from "../../../../../app/utils/constants";
 
 const OrdersTable = () => {
     const [page, setPage] = useState(1);
@@ -56,26 +57,22 @@ const OrdersTable = () => {
                         <Table
                             columns={[
                                 {
-                                    key: 'name',
-                                    label: t('name')
-                                },
-                                {
                                     key: 'reference',
                                     label: t('reference')
                                 },
                                 {
-                                    key: 'price',
-                                    label: t('price')
+                                    key: 'total',
+                                    label: t('total')
                                 },
                                 {
-                                    key: 'tax',
-                                    label: t('tax')
+                                    key: 'taxes',
+                                    label: t('taxes')
                                 },
                             ]}
                             values={getOrdersAction.data.map((item: any) => ({
                                 ...item,
-                                price: formatAmount(item.price),
-                                tax: formatAmount(item.tax),
+                                total: formatAmount(item.total),
+                                taxes: formatAmount(item.taxes),
                             }))}
                             routesEdit={routes.edit}
                             keyId=":idOrder"

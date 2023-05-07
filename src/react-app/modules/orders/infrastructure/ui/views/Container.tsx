@@ -9,7 +9,7 @@ import routes, { Route, Routes } from "../utils/routes";
 const Container = () => {
     return (
         <Routes>
-            <Route index path={routes.list} element={<OrdersTable />} />
+            <Route path={routes.list} element={<OrdersTable />} />
             <Route path={routes.new} element={<OrdersNew />} />
             <Route path={routes.edit} element={<OrdersEdit />} />
         </Routes>

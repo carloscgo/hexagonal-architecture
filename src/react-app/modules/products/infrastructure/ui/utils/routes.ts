@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 const routes: any = {
-    list: '/',
+    list: '/products',
     new: '/product/new',
     edit: '/product/edit/:idProduct',
     details: '/product/details',

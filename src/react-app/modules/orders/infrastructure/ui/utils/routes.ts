@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 const routes: any = {
-    list: '/',
-    new: '/product/new',
-    edit: '/product/edit/:idOrder',
-    details: '/product/details',
+    list: '/orders',
+    new: '/order/new',
+    edit: '/order/edit/:idOrder',
+    details: '/order/details',
 }
 
 export default routes;

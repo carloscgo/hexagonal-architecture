@@ -3,7 +3,7 @@
 import { IdProduct, Product } from '../../domain/models/Product';
 import { ProductRepository } from '../../domain/repositories/ProductRepository';
 import { Http } from '../../domain/repositories/Http';
-import { LIMIT } from '../../../../app/components/Pagination';
+import { LIMIT } from '../../../../app/utils/constants';
 
 const PATH = '/products'
 

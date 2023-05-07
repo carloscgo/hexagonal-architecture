@@ -7,7 +7,7 @@ import OrdersForm, { FormValues } from './OrderForm';
 import useToast from '../../../../../app/hooks/useToast';
 import { useTranslation } from '../../../../../app/utils/i18n';
 
-const OrdersNew = () => {
+const OrderNew = () => {
     const { t } = useTranslation();
 
     const addOrder = orderRepository(httpAxios).addOrder;
@@ -27,4 +27,4 @@ const OrdersNew = () => {
     )
 }
 
-export default OrdersNew;
+export default OrderNew;

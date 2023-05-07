@@ -5,7 +5,7 @@ import { useState } from "react";
 import Table from "../../../../../app/components/Table";
 import Loading from "../../../../../app/components/Loading";
 import useToast from "../../../../../app/hooks/useToast";
-import Pagination, { LIMIT, TYPES } from "../../../../../app/components/Pagination";
+import Pagination from "../../../../../app/components/Pagination";
 import HeaderList from "../../../../../app/components/HeaderList";
 import { formatAmount, useTranslation } from "../../../../../app/utils/i18n";
 import { useDeleteProduct, useGetProducts } from "../../../application";
@@ -13,6 +13,7 @@ import { IdProduct } from "../../../domain/models/Product";
 import { httpAxios } from "../../instances/httpAxios";
 import { productRepository } from "../../repositories/productRepository";
 import routes from "../utils/routes";
+import { LIMIT, TYPES } from "../../../../../app/utils/constants";
 
 const ProductsTable = () => {
     const [page, setPage] = useState(1);
