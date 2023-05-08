@@ -1,18 +1,32 @@
 {
   "translation": {
-    "goBack": "Regresar",
+    "goBack": "Volver",
     "creating": "Creando...",
     "actions": "Acciones",
     "cancel": "Cancelar",
     "confirm": "Confirmar",
-    "messageWarningDelete": "Todos tus datos serán eliminados permanentemente de nuestros servidores. Esta acción no se puede revertir.",
     "loading": "Cargando...",
     "previous": "Anterior",
     "next": "Siguiente",
+
+    "messageWarningDelete": "Todos sus datos serán eliminados permanentemente de nuestros servidores para siempre. Esta acción no se puede deshacer.",
     "successfullyCreated": "¡Creado exitosamente!",
     "successfullyUpdated": "¡Actualizado exitosamente!",
     "successfullyDeleted": "¡Eliminado exitosamente!",
     "somethingWentWrong": "Algo salió mal. Por favor, intente de nuevo",
+
+    "name": "Nombre",
+    "reference": "Referencia",
+    "description": "Descripción",
+    "price": "Precio",
+    "tax": "Impuesto",
+    "product": "Producto",
+    "quantity": "Cantidad",
+    "totalPrices": "Precios Totales",
+    "totalGeneral": "Total General",
+    "taxes": "Impuestos",
+    "weFoundNoProducts": "No encontramos productos",
+    "enterProductName": "Ingrese el nombre de un producto",
 
     "createProduct": "Crear Producto",
     "createAnewProduct": "Crear un nuevo Producto",
@@ -24,15 +38,18 @@
     "latestProducts": "Últimos Productos",
     "listLatestProducts": "Esta es una lista de los últimos productos",
     "deleteProduct": "Eliminar Producto",
-    "messageDeleteProduct": "¿Estás seguro que quieres eliminar este producto?",
-    "name": "Nombre",
-    "reference": "Referencia",
-    "description": "Descripción",
-    "price": "Precio",
-    "tax": "Impuesto",
+    "messageDeleteProduct": "¿Está seguro de que desea eliminar este producto?",
 
     "createOrder": "Crear Orden",
+    "createAnewOrder": "Crear una nueva Orden",
+    "creatingOrder": "Creando nueva orden...",
+    "editOrder": "Editar Orden",
+    "editingOrder": "Editando orden...",
+    "deletingOrder": "Eliminando orden...",
+
     "latestOrders": "Últimas Órdenes",
-    "listLatestOrders": "Esta es una lista de las últimas órdenes"
+    "listLatestOrders": "Esta es una lista de las últimas órdenes",
+    "deleteOrder": "Eliminar Orden",
+    "messageDeleteOrder": "¿Está seguro de que desea eliminar esta orden?"
   }
 }
