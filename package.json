@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Hexagonal Architecture",
   "scripts": {
+    "install": "npm i --prefix ./src/react-app && npm i --prefix ./src/server-api",
     "start:react": "npm run dev --prefix ./src/react-app",
     "start:api": "npm run start --prefix ./src/server-api",
     "docker:run": "docker-compose -f ./cicd/docker-compose.yml --env-file ./.env.production",
