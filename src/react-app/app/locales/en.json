@@ -20,9 +20,13 @@
     "description": "Description",
     "price": "Price",
     "tax": "Tax",
-
-    "total": "Total",
+    "product": "Product",
+    "quantity": "Quantity",
+    "totalPrices": "Total Prices",
+    "totalGeneral": "Total General",
     "taxes": "Taxes",
+    "weFoundNoProducts": "We found no products",
+    "enterProductName": "Enter a product name",
 
     "createProduct": "Create Product",
     "createAnewProduct": "Create a new Product",

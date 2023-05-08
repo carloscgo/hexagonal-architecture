@@ -23,9 +23,15 @@ export default function Modal({ color, title, message, labelButton, show, onConf
 
     const { t } = useTranslation();
 
-    const textColor = `text-${color}-600`;
-    const bgColor = `bg-${color}-600`;
-    const hoverBgColor = `hover:bg-${color}-500`;
+    const classIcon = {
+        red: `h-6 w-6 text-red-600`,
+        indigo: `h-6 w-6 text-indigo-600`,
+    }[color];
+
+    const classButton = {
+        red: `inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`,
+        indigo: `inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 sm:ml-3 sm:w-auto`
+    }[color];
 
     const callOnClose = () => {
         setOpen(false);        
@@ -67,7 +73,7 @@ export default function Modal({ color, title, message, labelButton, show, onConf
                                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                                     <div className="sm:flex sm:items-start">
                                         <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                                            <RiQuestionFill className={`h-6 w-6 ${textColor}`} aria-hidden="true" />
+                                            <RiQuestionFill className={classIcon} aria-hidden="true" />
                                         </div>
                                         <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                                             <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
@@ -84,7 +90,7 @@ export default function Modal({ color, title, message, labelButton, show, onConf
                                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                     <button
                                         type="button"
-                                        className={`inline-flex w-full justify-center rounded-md ${bgColor} px-3 py-2 text-sm font-semibold text-white shadow-sm ${hoverBgColor} sm:ml-3 sm:w-auto`}
+                                        className={classButton}
                                         onClick={() => callOnConfirm()}
                                     >
                                         { labelButton }

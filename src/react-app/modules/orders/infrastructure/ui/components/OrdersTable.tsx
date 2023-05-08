@@ -40,6 +40,8 @@ const OrdersTable = () => {
         }
     }
 
+    const sumBy = (array: Array<any>, field: string) => array.reduce((previousValue, currentValue) => (Number(previousValue) + Number(currentValue[field])), 0)
+
     if (getOrdersAction.loading) return <Loading />
 
     return (
@@ -57,22 +59,32 @@ const OrdersTable = () => {
                         <Table
                             columns={[
                                 {
-                                    key: 'reference',
+                                    key: 'id',
                                     label: t('reference')
                                 },
                                 {
-                                    key: 'total',
-                                    label: t('total')
+                                    key: 'quantity',
+                                    label: t('Quantity')
+                                },
+                                {
+                                    key: 'totalPrices',
+                                    label: t('totalPrices')
                                 },
                                 {
                                     key: 'taxes',
                                     label: t('taxes')
                                 },
+                                {
+                                    key: 'totalGeneral',
+                                    label: t('totalGeneral')
+                                },
                             ]}
                             values={getOrdersAction.data.map((item: any) => ({
                                 ...item,
-                                total: formatAmount(item.total),
-                                taxes: formatAmount(item.taxes),
+                                quantity: sumBy(item.products, 'quantity'),
+                                totalPrices: formatAmount(sumBy(item.products, 'price')),
+                                taxes: formatAmount(sumBy(item.products, 'tax')),
+                                totalGeneral: formatAmount(sumBy(item.products, 'total')),
                             }))}
                             routesEdit={routes.edit}
                             keyId=":idOrder"

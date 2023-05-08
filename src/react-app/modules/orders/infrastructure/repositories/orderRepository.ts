@@ -4,6 +4,7 @@ import { IdOrder, Order } from '../../domain/models/Order';
 import { OrderRepository } from '../../domain/repositories/OrderRepository';
 import { Http } from '../../domain/repositories/Http';
 import { LIMIT } from '../../../../app/utils/constants';
+import { Product } from '../../domain/models/Product';
 
 const PATH = '/orders'
 
@@ -23,5 +24,9 @@ export const orderRepository = (client: Http): OrderRepository => ({
         client.delete<any>(`${PATH}/${id}`).then(() => {
             refetch();
         })
-    }
+    },
+
+    getProductSearch: async (q: string) => client.get<Product>(`${PATH}/?q=${q}`, {
+        _limit: LIMIT,
+    }),
 });

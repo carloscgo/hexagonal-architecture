@@ -4,7 +4,7 @@ import { ErrorMessage } from '@hookform/error-message';
 
 type PropsInput = {
     register: (name: string, validations: object) => object;
-    title: string;
+    title?: string;
     name: string;
     type?: string;
     validations: object;
@@ -16,7 +16,7 @@ export default function Input({ register, title, name, type, validations, errors
     return (
         <>
             <label className="block w-100">
-                <span className="text-gray-700 dark:text-gray-300">{title}</span>
+                {title && <span className="text-gray-700 dark:text-gray-300">{title}</span>}
                 <input
                     placeholder={title}
                     {...register(name, validations)}

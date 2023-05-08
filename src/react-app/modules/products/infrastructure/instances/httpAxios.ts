@@ -6,7 +6,7 @@ import { Http } from '../../domain/repositories/Http';
 const headers = {
     'Content-Type': 'application/json'
 };
-axios.defaults.baseURL = import.meta.env.VITE_API_SERVER;
+axios.defaults.baseURL = import.meta.env.VITE_API_SERVER + '/';
 
 export const httpAxios: Http = {
     get: async <T>(path: string, params?: Record<string, any>, config?: any) => {

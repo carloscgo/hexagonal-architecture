@@ -1,4 +1,5 @@
 import { IdOrder, Order } from '../models/Order';
+import { Product } from '../models/Product';
 
 export interface OrderRepository {
     getOrders: (page: number) => Promise<Order[]>;
@@ -6,4 +7,5 @@ export interface OrderRepository {
     addOrder: (order: Omit<Order, 'id'>) => Promise<Order>;
     editOrder: (id: IdOrder, order: Omit<Order, 'id'>) => Promise<Order>;
     deleteOrder: (id: IdOrder, refetch: () => void) => Promise<any>;
+    getProductSearch: (q: string) => Promise<Product>;
 }

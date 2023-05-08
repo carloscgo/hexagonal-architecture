@@ -7,6 +7,9 @@ export const productService = (repository: ProductRepository): ProductRepository
     getProducts: (page: number) => {
         return repository.getProducts(page);
     },
+    getProductSearch: (q: string) => {
+        return repository.getProductSearch(q);
+    },
     getProductById: (id: IdProduct) => {
         return repository.getProductById(id);
     },

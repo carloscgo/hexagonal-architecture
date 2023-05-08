@@ -23,7 +23,11 @@ const OrderNew = () => {
     }
 
     return (
-        <OrdersForm title={t('createAnewOrder')} labelSubmit={t('createOrder')} onSubmit={onSubmit} />
+        <OrdersForm
+            title={t('createAnewOrder')}
+            labelSubmit={t('createOrder')}
+            onSubmit={onSubmit}
+        />
     )
 }
 
