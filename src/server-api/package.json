@@ -4,7 +4,8 @@
   "description": "Server Json",
   "main": "index.js",
   "scripts": {
-    "start": "json-server -p 3001 -w data.json"
+    "start": "NODE_ENV=development node server.js",
+    "prod": "NODE_ENV=production node server.js"
   },
   "author": {
     "name": "Carlos Camacho",
