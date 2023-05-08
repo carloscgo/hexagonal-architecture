@@ -59,7 +59,7 @@ const ProductsForm = ({ title, labelSubmit, values, onSubmit }: PropsProductsFor
             setValue("price", values.price as number)
             setValue("tax", values.tax as number)
         }
-    }, [values]);
+    }, [values, setValue]);
 
     const callOnSubmit = (data: FormValues) => onSubmit(data, reset);
 

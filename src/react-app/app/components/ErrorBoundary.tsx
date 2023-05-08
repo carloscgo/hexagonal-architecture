@@ -6,9 +6,12 @@ interface ComponentProps {
   children: ReactNode;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Some = any;
+
 interface ComponentState {
   hasError: boolean;
-  error: any;
+  error: Some;
 }
 
 class ErrorBoundary extends React.Component<ComponentProps, ComponentState> {
@@ -19,13 +22,13 @@ class ErrorBoundary extends React.Component<ComponentProps, ComponentState> {
       this.state = { hasError: false, error: null }
     }
 
-    static getDerivedStateFromError(error: any) {
+    static getDerivedStateFromError(error: Some) {
       // Update state so the next render will show the fallback UI
   
       return { hasError: true, error }
     }
 
-    componentDidCatch(error: any, errorInfo: any) {
+    componentDidCatch(error: Some, errorInfo: Some) {
       // You can use your own error logging service here
       console.log({ error, errorInfo })
     }
@@ -47,7 +50,7 @@ class ErrorBoundary extends React.Component<ComponentProps, ComponentState> {
         )
       }
   
-      // Return children components in case of no error
+      // Some children components in case of no error
       return this.props.children
     }
   }

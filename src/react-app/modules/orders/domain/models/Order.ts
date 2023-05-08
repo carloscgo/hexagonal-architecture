@@ -18,5 +18,6 @@ export type Order = {
     total: string | number;
     taxes: string | number;
     products: IProduct[];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 };

@@ -44,8 +44,8 @@ export const LanguageSelector = () => {
     };
 
     useEffect(() => {
-        const handleWindowClick = (event: any) => {
-            const target = event.target.closest('button');
+        const handleWindowClick = (event: MouseEvent) => {
+            const target = (event.target as HTMLElement).closest('button');
             if (target && target.id === LANGUAGE_SELECTOR_ID) {
                 return;
             }

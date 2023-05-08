@@ -34,7 +34,7 @@ const useToast = (status: string, message: string, success: string, error?: stri
                 notyf.error(`${t('somethingWentWrong')} - ${error}`);
             }
         }
-    }, [status])
+    }, [status, error, success, message, t])
 }
 
 export default useToast;

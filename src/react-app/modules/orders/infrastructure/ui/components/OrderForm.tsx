@@ -5,10 +5,11 @@ import { type FieldValues, useForm, useFieldArray } from 'react-hook-form';
 import FootButtons from '../../../../../app/components/FootButtons';
 import { useTranslation } from '../../../../../app/utils/i18n';
 import routes, { Link } from "../utils/routes";
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Order } from '../../../domain/models/Order';
 import { RiAddCircleFill, RiDeleteBin2Fill } from 'react-icons/ri';
 import Search from '../../../../../app/components/Search';
+import { Some } from '../../../application';
 
 export interface FormValues extends FieldValues {
     title: string;
@@ -69,14 +70,14 @@ const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =>
         });
     }
 
-    const updateTotalProduct = (index: number, quantity: number) => {
+    const updateTotalProduct = useCallback((index: number, quantity: number) => {
         setValue(`products[${index}].quantity`, quantity);
 
         const price = getValues(`products[${index}].price`);
         const tax = getValues(`products[${index}].tax`);
 
         setValue(`products[${index}].total`, ((price + tax) * quantity) as number);
-    }
+    }, [setValue, getValues])
 
     const columns = useMemo(() => [{
         key: 'productId',
@@ -98,7 +99,7 @@ const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =>
         key: 'price',
         label: t('price'),
         width: 'w-[200px]',
-        field: (index: number, field: any) => (
+        field: (index: number, field: Some) => (
             <input
                 placeholder={t('price') as string}
                 readOnly
@@ -111,7 +112,7 @@ const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =>
         key: 'tax',
         label: t('tax'),
         width: 'w-[200px]',
-        field: (index: number, field: any) => (
+        field: (index: number, field: Some) => (
             <input
                 placeholder={t('tax') as string}
                 readOnly
@@ -129,7 +130,7 @@ const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =>
                 placeholder={t('quantity') as string}
                 {...register(`products[${index}].quantity`, { required: true, min: '1' })}
                 type="number"
-                onChange={(e: any) => {
+                onChange={(e: Some) => {
                     updateTotalProduct(index, e.target.value as number);
 
                     setFocus(`products[${index}].total`);
@@ -150,7 +151,7 @@ const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =>
             type="number"
             className="w-full mt-1 mb-1 p-2 dark:bg-gray-300 block rounded-md border-blue-300 border-[1px] shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
         />)
-    }], []);
+    }], [getValues, register, setFocus, setValue, t, updateTotalProduct]);
 
     const callOnSubmit = (data: FormValues) => onSubmit(data, reset);
 

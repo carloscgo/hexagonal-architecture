@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import { useState } from "react";
 
 interface Values {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 

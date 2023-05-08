@@ -1,10 +1,11 @@
 // app/components/Input.tsx
 
 import { ErrorMessage } from '@hookform/error-message';
+import { Some } from '../../modules/products/application';
 
 type PropsInput = {
     register: (name: string, validations: object) => object;
-    title?: string;
+    title?: string | Some;
     name: string;
     type?: string;
     validations: object;

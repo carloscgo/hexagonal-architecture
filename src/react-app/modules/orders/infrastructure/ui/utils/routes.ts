@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-const routes: any = {
+const routes = {
     list: '/orders',
     new: '/order/new',
     edit: '/order/edit/:idOrder',

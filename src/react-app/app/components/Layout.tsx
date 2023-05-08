@@ -7,7 +7,6 @@ import MetaTags from './MetaTags';
 import Menus from './Menu';
 import ButtonTheme from './ButtonTheme';
 import { LanguageSelector } from "./LanguageSelector";
-import { Route, Routes } from "../utils/routes";
 import { Container as Products } from "../../modules/products/infrastructure/ui/views";
 import { Container as Orders } from "../../modules/orders/infrastructure/ui/views";
 

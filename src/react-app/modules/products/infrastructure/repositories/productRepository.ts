@@ -20,7 +20,7 @@ export const productRepository = (client: Http): ProductRepository => ({
     editProduct: async (id: IdProduct, product: Omit<Product, 'id'>) => client.put<Product>(`${PATH}/${id}`, product),
 
     deleteProduct: async (id: IdProduct, refetch: () => void) => {
-        client.delete<any>(`${PATH}/${id}`).then(() => {
+        client.delete<Promise<void>>(`${PATH}/${id}`).then(() => {
             refetch();
         })
     }

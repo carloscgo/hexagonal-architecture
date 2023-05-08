@@ -7,6 +7,9 @@ export const orderService = (repository: OrderRepository): OrderRepository => ({
     getOrders: (page: number) => {
         return repository.getOrders(page);
     },
+    getProductSearch: (q: string) => {
+        return repository.getProductSearch(q);
+    },
     getOrderById: (id: IdOrder) => {
         return repository.getOrderById(id);
     },

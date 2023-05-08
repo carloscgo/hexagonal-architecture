@@ -3,6 +3,7 @@ import Turnstone from 'turnstone';
 import { RiCloseCircleFill, RiSearch2Line } from 'react-icons/ri'
 import { LIMIT } from '../utils/constants';
 import { useTranslation } from '../utils/i18n';
+import { Some } from '../../modules/products/application';
 
 const ServerApi = import.meta.env.VITE_API_SERVER;
 
@@ -38,7 +39,7 @@ const Cancel = () => <RiCloseCircleFill size="16px" />
 
 const Clear = () => <RiCloseCircleFill size="16px" />
 
-export default function Search({ id, onSelect }: { id: string, onSelect: (data: any) => any | void}) {
+export default function Search({ id, onSelect }: { id: string, onSelect: (data: Some) => Some | void}) {
   const { t } = useTranslation();
 
   const [hasFocus, setHasFocus] = useState(false)

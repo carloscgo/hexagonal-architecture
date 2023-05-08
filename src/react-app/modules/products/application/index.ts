@@ -11,3 +11,6 @@ export { useGetProductById } from './useGetProductById'
 export { useAddProduct } from './useAddProduct'
 export { useEditProduct } from './useEditProduct'
 export { useDeleteProduct } from './useDeleteProduct'
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Some = any;

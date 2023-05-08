@@ -16,7 +16,7 @@ export const setItemStorage = (key: string, value: string | object | number) => 
   window.localStorage.setItem(key, valueStorage);
 }
 
-const useLocalStorage = (key: string, initialValue: any) => {
+const useLocalStorage = (key: string, initialValue: string) => {
   const [state, setState] = useState(() => {
     try {
       if (typeof window === 'object') {
@@ -31,7 +31,7 @@ const useLocalStorage = (key: string, initialValue: any) => {
     }
   })
 
-  const setValue = (value: any) => {
+  const setValue = (value: string | ((prevState: string) => string)) => {
     try {
       const valueToStore = value instanceof Function ? value(state) : value;
 

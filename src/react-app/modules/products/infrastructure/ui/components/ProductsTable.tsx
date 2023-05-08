@@ -8,7 +8,7 @@ import useToast from "../../../../../app/hooks/useToast";
 import Pagination from "../../../../../app/components/Pagination";
 import HeaderList from "../../../../../app/components/HeaderList";
 import { formatAmount, useTranslation } from "../../../../../app/utils/i18n";
-import { useDeleteProduct, useGetProducts } from "../../../application";
+import { Some, useDeleteProduct, useGetProducts } from "../../../application";
 import { IdProduct } from "../../../domain/models/Product";
 import { httpAxios } from "../../instances/httpAxios";
 import { productRepository } from "../../repositories/productRepository";
@@ -73,7 +73,7 @@ const ProductsTable = () => {
                                     label: t('tax')
                                 },
                             ]}
-                            values={getProductsAction.data.map((item: any) => ({
+                            values={getProductsAction.data.map((item: Some) => ({
                                 ...item,
                                 price: formatAmount(item.price),
                                 tax: formatAmount(item.tax),

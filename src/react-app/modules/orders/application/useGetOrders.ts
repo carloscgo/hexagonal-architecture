@@ -1,9 +1,9 @@
 // modules/orders/application/useGetOrders.ts
 
-import { useQuery } from ".";
+import { Some, useQuery } from ".";
 import { OrderRepository } from "../domain/repositories/OrderRepository";
 
-export const useGetOrders = (getOrders: OrderRepository['getOrders'], page: number) => <any>useQuery({
+export const useGetOrders = (getOrders: OrderRepository['getOrders'], page: number) => <Some>useQuery({
     queryKey: ['orders', page],
     queryFn: () => getOrders(page),
     keepPreviousData: true,

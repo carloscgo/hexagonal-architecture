@@ -8,8 +8,8 @@ import useToast from "../../../../../app/hooks/useToast";
 import Pagination from "../../../../../app/components/Pagination";
 import HeaderList from "../../../../../app/components/HeaderList";
 import { formatAmount, useTranslation } from "../../../../../app/utils/i18n";
-import { useDeleteOrder, useGetOrders } from "../../../application";
-import { IdOrder } from "../../../domain/models/Order";
+import { Some, useDeleteOrder, useGetOrders } from "../../../application";
+import { IdOrder, Order } from "../../../domain/models/Order";
 import { httpAxios } from "../../instances/httpAxios";
 import { orderRepository } from "../../repositories/orderRepository";
 import routes from "../utils/routes";
@@ -40,7 +40,7 @@ const OrdersTable = () => {
         }
     }
 
-    const sumBy = (array: Array<any>, field: string) => array.reduce((previousValue, currentValue) => (Number(previousValue) + Number(currentValue[field])), 0)
+    const sumBy = (array: Array<Order>, field: string) => array.reduce((previousValue, currentValue) => (Number(previousValue) + Number(currentValue[field])), 0)
 
     if (getOrdersAction.loading) return <Loading />
 
@@ -79,7 +79,7 @@ const OrdersTable = () => {
                                     label: t('totalGeneral')
                                 },
                             ]}
-                            values={getOrdersAction.data.map((item: any) => ({
+                            values={getOrdersAction.data.map((item: Some) => ({
                                 ...item,
                                 quantity: sumBy(item.products, 'quantity'),
                                 totalPrices: formatAmount(sumBy(item.products, 'price')),

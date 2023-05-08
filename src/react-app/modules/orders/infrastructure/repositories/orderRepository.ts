@@ -21,7 +21,7 @@ export const orderRepository = (client: Http): OrderRepository => ({
     editOrder: async (id: IdOrder, order: Omit<Order, 'id'>) => client.put<Order>(`${PATH}/${id}`, order),
 
     deleteOrder: async (id: IdOrder, refetch: () => void) => {
-        client.delete<any>(`${PATH}/${id}`).then(() => {
+        client.delete<Promise<void>>(`${PATH}/${id}`).then(() => {
             refetch();
         })
     },

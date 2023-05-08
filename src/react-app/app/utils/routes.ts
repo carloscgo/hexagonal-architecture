@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const routes: any = {
+const routes = {
     home: '/',
     products: {
         list: '/products',
