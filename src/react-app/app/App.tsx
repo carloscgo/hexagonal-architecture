@@ -20,8 +20,8 @@ function App() {
     <BrowserRouter>
       <ErrorBoundary>
         <HelmetProvider>
-          <QueryClientProvider client={client}>
-            <Layout />
+          <QueryClientProvider client={client} data-testid="query-client-provider">
+            <Layout data-testid="layout-component" />
 
             <ReactQueryDevtools initialIsOpen={false} />
           </QueryClientProvider>

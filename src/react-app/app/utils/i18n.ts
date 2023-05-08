@@ -16,14 +16,14 @@ export const key = 'language';
 export const fallbackLanguage = languages[0];
 
 export default function config() {
-    const language = getItemStorage(key, fallbackLanguage.key);
+    const language = getItemStorage(key, fallbackLanguage);
 
     i18n.use(initReactI18next).init({
         resources: {
             en: { ...enJSON },
             es: { ...esJSON },
         },
-        lng: language,
+        lng: language.key,
         debug: true,
     });
 }

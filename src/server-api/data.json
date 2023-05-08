@@ -73,16 +73,8 @@
           "name": "Algo",
           "price": 20,
           "tax": 1,
-          "quantity": "7",
-          "total": "147"
-        },
-        {
-          "productId": 17,
-          "name": "ddsd",
-          "price": "1",
-          "tax": "1",
-          "quantity": "2",
-          "total": "22"
+          "quantity": 7,
+          "total": 147
         }
       ],
       "id": 1

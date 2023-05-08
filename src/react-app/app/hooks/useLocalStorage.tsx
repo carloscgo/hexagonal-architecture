@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Some } from "../../modules/products/application";
 
 export const getItemStorage = (key: string, initialValue?: string | object | number | undefined) => {
   const value = window.localStorage.getItem(key);
@@ -16,7 +17,7 @@ export const setItemStorage = (key: string, value: string | object | number) => 
   window.localStorage.setItem(key, valueStorage);
 }
 
-const useLocalStorage = (key: string, initialValue: string) => {
+const useLocalStorage = (key: string, initialValue: Some) => {
   const [state, setState] = useState(() => {
     try {
       if (typeof window === 'object') {

@@ -64,7 +64,7 @@ const OrdersTable = () => {
                                 },
                                 {
                                     key: 'quantity',
-                                    label: t('Quantity')
+                                    label: t('quantity')
                                 },
                                 {
                                     key: 'totalPrices',
