@@ -14,7 +14,10 @@
     "type": "git",
     "url": "git+https://github.com/carloscgo/hexagonal-architecture.git"
   },
-  "author": "Carlos Camacho <carloscgo123@gmail.com>",
+  "author": {
+    "name": "Carlos Camacho",
+    "email": "carloscgo123@gmail.com"
+  },
   "license": "ISC",
   "homepage": "https://github.com/carloscgo/hexagonal-architecture#readme",
   "bugs": {

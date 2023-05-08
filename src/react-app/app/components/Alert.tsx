@@ -58,7 +58,7 @@ export default function Alert({ message, type, title }: PropsAlert) {
                 {' '}{message}
             </div>
 
-            <div className="cursor-pointer hover:opacity-75" onClick={() => setShow(false)}>
+            <div role="button" className="cursor-pointer hover:opacity-75" onClick={() => setShow(false)}>
                 <MdClose size="28px" className="text-gray-600" />
             </div>
         </div>

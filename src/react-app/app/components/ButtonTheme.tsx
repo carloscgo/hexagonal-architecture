@@ -35,10 +35,10 @@ export default function ButtonTheme() {
 
     return (
         <>
-            <div onClick={() => setDark(Themes.dark)} ref={moon} className="moon cursor-pointer text-white hover:text-blue-500 dark:hover:text-[#38BDF8]">
+            <div onClick={() => setDark(Themes.dark)} aria-label="moon icon" ref={moon} className="moon cursor-pointer text-white hover:text-blue-500 dark:hover:text-[#38BDF8]">
                 <BiMoon />
             </div>
-            <div onClick={() => setDark(Themes.light)} ref={sun} className="sun cursor-pointer hidden text-white hover:text-blue-500 dark:hover:text-[#38BDF8]">
+            <div onClick={() => setDark(Themes.light)} aria-label="sun icon" ref={sun} className="sun cursor-pointer hidden text-white hover:text-blue-500 dark:hover:text-[#38BDF8]">
                 <BiSun />
             </div>
         </>

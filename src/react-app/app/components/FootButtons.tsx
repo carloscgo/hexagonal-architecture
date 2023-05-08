@@ -21,7 +21,7 @@ export default function FootButtons({ routeBack, label, isSubmitting, isValid }:
             <Link to={routeBack} className='my-4 capitalize bg-gray-500 text-white font-medium p-2 rounded-md hover:bg-gray-600'>
                 <span className="flex items-center justify-center">
                     <RiArrowGoBackFill size="20px" className="mr-1" />
-                    { t('goBack') }
+                    {t('goBack')}
                 </span>
             </Link>
 
@@ -33,7 +33,7 @@ export default function FootButtons({ routeBack, label, isSubmitting, isValid }:
                 {isSubmitting ? (
                     <span className="flex items-center justify-center">
                         <RiLoaderFill size="20px" className="animate-spin mr-1" />
-                        { t('creating') }
+                        {t('creating')}
                     </span>
                 ) : (
                     <span className="flex items-center justify-center">
