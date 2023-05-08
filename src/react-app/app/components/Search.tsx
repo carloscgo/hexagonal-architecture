@@ -39,7 +39,13 @@ const Cancel = () => <RiCloseCircleFill size="16px" />
 
 const Clear = () => <RiCloseCircleFill size="16px" />
 
-export default function Search({ id, onSelect }: { id: string, onSelect: (data: Some) => Some | void}) {
+type PropsSearch = {
+  id: string;
+  value?: string;
+  onSelect: (data: Some) => Some | void;
+}
+
+export default function Search({ id, value, onSelect }: PropsSearch) {
   const { t } = useTranslation();
 
   const [hasFocus, setHasFocus] = useState(false)
@@ -62,6 +68,8 @@ export default function Search({ id, onSelect }: { id: string, onSelect: (data: 
         autoFocus={false}
         cancelButton={true}
         clearButton={true}
+        minQueryLength={3}
+        text={value}
         debounceWait={250}
         id={id}
         listbox={listbox}

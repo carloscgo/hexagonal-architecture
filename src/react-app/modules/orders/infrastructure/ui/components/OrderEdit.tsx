@@ -25,7 +25,7 @@ const OrderEdit = () => {
     const onSubmit = (data: FormValues) => editOrderAction.mutate({ id: idOrder, order: data });
 
     return (
-        <OrdersForm title={t('editOrder')} labelSubmit={t('editOrder')} values={getOrderByIcAction.data} onSubmit={onSubmit} />
+        <OrdersForm title={t('editOrder')} labelSubmit={t('updateOrder')} values={getOrderByIcAction.data?.products} onSubmit={onSubmit} />
     )
 }
 

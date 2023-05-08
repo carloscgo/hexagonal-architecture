@@ -5,24 +5,26 @@ import { type FieldValues, useForm, useFieldArray } from 'react-hook-form';
 import FootButtons from '../../../../../app/components/FootButtons';
 import { useTranslation } from '../../../../../app/utils/i18n';
 import routes, { Link } from "../utils/routes";
-import { useCallback, useMemo } from 'react';
-import { Order } from '../../../domain/models/Order';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { RiAddCircleFill, RiDeleteBin2Fill } from 'react-icons/ri';
 import Search from '../../../../../app/components/Search';
 import { Some } from '../../../application';
+import Loading from '../../../../../app/components/Loading';
+import { Order } from '../../../domain/models/Order';
+
+interface Values {
+    [key: string]: number | string;
+}
 
 export interface FormValues extends FieldValues {
-    title: string;
-    reference: string;
-    description: string;
-    price: number;
-    tax: number;
+    order: Order;
+    products: Values[];
 }
 
 type PropsOrdersForm = {
     title: string;
     labelSubmit: string;
-    values?: Order;
+    values?: Values[];
     onSubmit: (
         data: FormValues,
         reset: () => void
@@ -30,6 +32,8 @@ type PropsOrdersForm = {
 };
 
 const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) => {
+    const [started, setStarted] = useState(false);
+
     const { t } = useTranslation();
 
     const {
@@ -44,15 +48,6 @@ const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =>
     } = useForm<FormValues>({
         mode: "all",
         reValidateMode: "onChange",
-        defaultValues: {
-            products: [{
-                productId: '',
-                price: '',
-                tax: '',
-                quantity: 0,
-                total: 0,
-            }]
-        }
     });
 
     const { fields, append, remove } = useFieldArray({
@@ -60,15 +55,47 @@ const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =>
         name: "products",
     });
 
+    const defaultValue = useMemo(() => ({
+        productId: '',
+        name: '',
+        price: '',
+        tax: '',
+        quantity: 0,
+        total: 0,
+    }), []);
+
     const addField = () => {
-        append({
-            productId: '',
-            price: '',
-            tax: '',
-            quantity: 0,
-            total: 0,
-        });
-    }
+        append(defaultValue);
+    };
+
+    const products = useMemo(() => {
+        if (values) {
+            return values.map((product: Values) => ({
+                productId: product.productId,
+                name: product.name,
+                price: Number(product.price),
+                tax: Number(product.tax),
+                quantity: Number(product.quantity),
+                total: Number(product.total),
+            }))
+        } else {
+            return [defaultValue]
+        }
+    }, [values, defaultValue])
+
+    useEffect(() => {
+        if (!started) {
+            const timer = setTimeout(() => {
+                products.forEach(product => {
+                    append(product);
+                });
+
+                setStarted(true);
+            }, 1000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [started, products, append])
 
     const updateTotalProduct = useCallback((index: number, quantity: number) => {
         setValue(`products[${index}].quantity`, quantity);
@@ -83,18 +110,28 @@ const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =>
         key: 'productId',
         label: t('product'),
         width: 'w-[auto]',
-        field: (index: number) => (
-            <Search id={`productInput${index}`} onSelect={(product) => {
-                if (product) {
-                    setValue(`products[${index}].productId`, product.id);
-                    setValue(`products[${index}].price`, product.price as number);
-                    setValue(`products[${index}].tax`, product.tax as number);
+        field: (index: number, field: Some) => (
+            <>
+                <input
+                    {...register(`products[${index}].name`)}
+                    type="hidden"
+                    defaultValue={field.name}
+                />
 
-                    const quantity = getValues(`products[${index}].quantity`) as number;
+                <Search id={`productInput${index}`} value={field.name} onSelect={(product) => {
+                    if (product) {
+                        setValue(`products[${index}].productId`, product.id);
+                        setValue(`products[${index}].name`, product.name);
+                        setValue(`products[${index}].price`, product.price as number);
+                        setValue(`products[${index}].tax`, product.tax as number);
 
-                    updateTotalProduct(index, quantity);
-                }
-            }} />)
+                        const quantity = getValues(`products[${index}].quantity`) as number;
+
+                        updateTotalProduct(index, quantity);
+                    }
+                }} />
+            </>
+        )
     }, {
         key: 'price',
         label: t('price'),
@@ -107,7 +144,8 @@ const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =>
                 type="number"
                 defaultValue={field.price}
                 className="w-full mt-1 mb-1 p-2 dark:bg-gray-300 block rounded-md border-blue-300 border-[1px] shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-            />)
+            />
+        )
     }, {
         key: 'tax',
         label: t('tax'),
@@ -120,7 +158,8 @@ const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =>
                 type="number"
                 defaultValue={field.tax}
                 className="w-full mt-1 mb-1 p-2 dark:bg-gray-300 block rounded-md border-blue-300 border-[1px] shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-            />)
+            />
+        )
     }, {
         key: 'quantity',
         label: t('quantity'),
@@ -139,18 +178,21 @@ const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =>
                 step="1"
                 min="1"
                 className="w-full mt-1 mb-1 p-2 dark:bg-gray-300 block rounded-md border-blue-300 border-[1px] shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-            />)
+            />
+        )
     }, {
         key: 'total',
         label: t('total'),
         width: 'w-[300px]',
-        field: (index: number) => (<input
-            placeholder={t('total') as string}
-            readOnly
-            {...register(`products[${index}].total`, { required: true })}
-            type="number"
-            className="w-full mt-1 mb-1 p-2 dark:bg-gray-300 block rounded-md border-blue-300 border-[1px] shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-        />)
+        field: (index: number) => (
+            <input
+                placeholder={t('total') as string}
+                readOnly
+                {...register(`products[${index}].total`, { required: true })}
+                type="number"
+                className="w-full mt-1 mb-1 p-2 dark:bg-gray-300 block rounded-md border-blue-300 border-[1px] shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            />
+        )
     }], [getValues, register, setFocus, setValue, t, updateTotalProduct]);
 
     const callOnSubmit = (data: FormValues) => onSubmit(data, reset);
@@ -160,6 +202,8 @@ const OrderForm = ({ title, labelSubmit, values, onSubmit }: PropsOrdersForm) =>
             remove(id);
         }
     }
+
+    if (!started) return <Loading />;
 
     return (
         <div className="container mx-auto w-100 py-12">

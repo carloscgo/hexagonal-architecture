@@ -25,6 +25,7 @@
     "totalPrices": "Precios Totales",
     "totalGeneral": "Total General",
     "taxes": "Impuestos",
+    "total": "Total",
     "weFoundNoProducts": "No encontramos productos",
     "enterProductName": "Ingrese el nombre de un producto",
 
@@ -32,6 +33,7 @@
     "createAnewProduct": "Crear un nuevo Producto",
     "creatingProduct": "Creando nuevo producto...",
     "editProduct": "Editar Producto",
+    "updateOrder": "Actualizar Producto",
     "editingProduct": "Editando producto...",
     "deletingProduct": "Eliminando producto...",
 

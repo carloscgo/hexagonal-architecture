@@ -2,7 +2,7 @@
   "products": [
     {
       "tax": 1,
-      "price": 1,
+      "price": 20,
       "description": "fdf",
       "reference": "fdfdf",
       "name": "Algo",
@@ -65,5 +65,27 @@
       "id": 22
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "products": [
+        {
+          "productId": 15,
+          "name": "Algo",
+          "price": 20,
+          "tax": 1,
+          "quantity": "7",
+          "total": "147"
+        },
+        {
+          "productId": 17,
+          "name": "ddsd",
+          "price": "1",
+          "tax": "1",
+          "quantity": "2",
+          "total": "22"
+        }
+      ],
+      "id": 1
+    }
+  ]
 }
